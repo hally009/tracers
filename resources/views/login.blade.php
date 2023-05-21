@@ -88,7 +88,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
+                      <a href="{{route('menuAdmin.menuAdmin')}}"><button class="btn btn-primary w-100" type="button">Login</button></a>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0"> <a href="pages-register.html"> </a></p>

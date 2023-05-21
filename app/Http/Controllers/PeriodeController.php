@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Aktor;
+use App\Models\periode;
 use Illuminate\Http\Request;
 
-class AktorController extends Controller
+class PeriodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +14,9 @@ class AktorController extends Controller
      */
     public function index()
     {
-        return view('login');
-    }
+        $periodes = Periode::all();
+        return view('admin.periode',['periodes' => $periodes]);
 
-    public function menuAdmin()
-    {
-        return view('admin.menuAdmin');
-    }
-
-    public function konfigurasi()
-    {
-        return view('admin.konfigurasi');
     }
 
     /**
@@ -34,7 +26,7 @@ class AktorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.periode');
     }
 
     /**
@@ -45,16 +37,24 @@ class AktorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama_periode'  => 'required|min:3|max:50',
+            'tahun_periode' => 'required|numeric|digits:4',
+        ]);
+
+        Periode::create($validateData);
+        $periodes = Periode::all();
+        return view('admin.periode',['periodes' => $periodes]);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function show(Aktor $aktor)
+    public function show(periode $periode)
     {
         //
     }
@@ -62,10 +62,10 @@ class AktorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Aktor $aktor)
+    public function edit(periode $periode)
     {
         //
     }
@@ -74,10 +74,10 @@ class AktorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Aktor $aktor)
+    public function update(Request $request, periode $periode)
     {
         //
     }
@@ -85,10 +85,10 @@ class AktorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aktor $aktor)
+    public function destroy(periode $periode)
     {
         //
     }
