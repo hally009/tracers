@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\periode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 class PeriodeController extends Controller
 {
@@ -26,7 +30,7 @@ class PeriodeController extends Controller
      */
     public function create()
     {
-        return view('admin.periode');
+       //
     }
 
     /**
@@ -36,17 +40,21 @@ class PeriodeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $validateData = $request->validate([
-            'nama_periode'  => 'required|min:3|max:50',
-            'tahun_periode' => 'required|numeric|digits:4',
-        ]);
+{
+    $validator = Validator::make($request->all(), [
+        'nama_periode'  => 'required|min:3|max:50',
+        'tahun_periode' => 'required|numeric|digits:4',
+    ]);
 
-        Periode::create($validateData);
-        $periodes = Periode::all();
-        return view('admin.periode',['periodes' => $periodes]);
-
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
     }
+
+    Periode::create($request->all());
+
+    return Redirect::route('periode.index')->withSuccess('Data periode berhasil ditambahkan');
+}
+
 
     /**
      * Display the specified resource.

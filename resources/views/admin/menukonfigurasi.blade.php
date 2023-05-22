@@ -23,17 +23,20 @@
   <link href="{{asset('vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
   <link href="{{asset('vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
   <link href="{{asset('vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+  <link href="{{asset('vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: MyResume
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+  <style>
+    .table.datatable thead th:empty {
+      display: none;
+    }
+  </style>
+
+
 </head>
 
 <body>
@@ -88,9 +91,14 @@
   <script src="{{asset('vendor/typed.js/typed.min.js')}}"></script>
   <script src="{{asset('vendor/waypoints/noframework.waypoints.js')}}"></script>
   <script src="{{asset('vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{asset('vendor/simple-datatables/simple-datatables.js')}}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
+
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
 
 </body>
 

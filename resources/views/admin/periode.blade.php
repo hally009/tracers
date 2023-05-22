@@ -1,4 +1,5 @@
 
+
 @extends('admin.menuKonfigurasi')
 
 @section('content')
@@ -14,12 +15,18 @@
 
             <div class="row">
                 <div class="col-lg-12 ms-lg-4">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
                     <div class="card">
                       <div class="card-body">
-
+                        <div>
                         <h5 class="card-title" style="display: inline-block;">Daftar Tabel Periode Tracer Study</h5>
                         <button type="button" class="btn btn-outline-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#myModal">Tambah Periode</button>
+                        </div>
 
                         <hr>
 
@@ -29,9 +36,9 @@
                             <tr>
                               <th scope="col">No</th>
                               <th scope="col">Nama Periode</th>
-                              <th scope="col">Tahun</th>
+                              <th scope="col">Tahun Periode</th>
                               <th scope="col"> </th>
-                              <th scope="col"> </th>
+
                             </tr>
                           </thead>
                           <tbody>
@@ -40,8 +47,8 @@
                               <th scope="row">{{$loop->iteration}}</th>
                               <td>{{$periode->nama_periode}}</td>
                               <td>{{$periode->tahun_periode}}</td>
-                              <td><i class="bx bxs-edit bx-sm"></i></td>
-                              <td><i class="bx bxs-eraser bx-sm"></td>
+                              <td><i class="bx bxs-edit bx-sm" style=" color:cornflowerblue";></i>
+                              <i class="bx bxs-eraser bx-sm" style=" color: cornflowerblue";></td>
                             </tr>
                             @empty
                             <td colspan="5" class="text-center">Tidak ada data...</td>
@@ -99,5 +106,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        @if($errors->any())
+            document.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+                myModal.show();
+            });
+        @endif
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+          $('.datatable').DataTable();
+        });
+    </script>
 
 @endsection

@@ -31,9 +31,9 @@ Route::get('/konfigurasi', [AktorController::class,'konfigurasi'])
 Route::get('/periode/create', [PeriodeController::class,'create'])
 ->name('periode.create');
 
-Route::post('/periode', [PeriodeController::class,'store'])
-->name('periode.store');
-
-Route::get('/periode', [PeriodeController::class,'index'])
+Route::get('/periode', [PeriodeController::class, 'index'])
 ->name('periode.index');
+
+Route::post('/periode', [PeriodeController::class, 'store'])
+->name('periode.store');
 
