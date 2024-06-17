@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Aktor extends Model
+class Aktor extends Authenticatable
 {
-    use HasFactory;
+    // Tentukan nama tabel jika tidak mengikuti konvensi penamaan default
+    protected $table = 'aktors';
+
+    // Definisikan kolom yang dapat diisi (fillable)
+    protected $fillable = ['status_pengguna', 'kata_pengguna', 'kata_sandi'];
 }

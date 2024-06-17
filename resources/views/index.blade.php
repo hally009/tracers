@@ -54,7 +54,7 @@
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
       <br>
-      <a href="{{ route('login.index') }}"><button type="button" class="btn btn-outline-secondary">Lanjut >></button></a>
+      <a href="{{ route('login') }}"><button type="button" class="btn btn-outline-secondary">Lanjut >></button></a>
     </div>
   </section>
   <!-- End Hero -->

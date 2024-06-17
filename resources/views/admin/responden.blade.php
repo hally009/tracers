@@ -6,11 +6,11 @@
 
 
     <!-- ======= About Section ======= -->
-    <section id="periode" class="about">
+    <section id="responden" class="about">
       <div class="container" data-aos="fade-up">
 
             <div class="section-title">
-            <h2>PERIODE</h2>
+            <h2>RESPONDEN</h2>
             </div>
 
             <div class="row">
@@ -24,8 +24,8 @@
                     <div class="card">
                       <div class="card-body">
                         <div>
-                        <h5 class="card-title" style="display: inline-block;">Daftar Tabel Periode Tracer Study</h5>
-                        <button type="button" class="btn btn-outline-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#myModal">Tambah Periode</button>
+                        <h5 class="card-title" style="display: inline-block;">Daftar Responden Tracer Study</h5>
+                        <button type="button" class="btn btn-outline-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#myModal">Tambah Responden</button>
                         </div>
 
                         <hr>
@@ -35,18 +35,22 @@
                           <thead>
                             <tr>
                               <th scope="col">No</th>
-                              <th scope="col">Nama Periode</th>
-                              <th scope="col">Tahun Periode</th>
+                              <th scope="col">NIM</th>
+                              <th scope="col">Nama Responden</th>
+                              <th scope="col">Prodi</th>
+                              <th scope="col">No Ijazah</th>
                               <th scope="col"> </th>
 
                             </tr>
                           </thead>
                           <tbody>
-                            @forelse ($periodes as $periode)
+                            @forelse ($respondens as $responden)
                             <tr>
                               <th scope="row">{{$loop->iteration}}</th>
-                              <td>{{$periode->nama_periode}}</td>
-                              <td>{{$periode->tahun_periode}}</td>
+                              <td>{{$responden->nim_responden}}</td>
+                              <td>{{$responden->nama_responden}}</td>
+                              <td>{{$responden->prodi}}</td>
+                              <td>{{$responden->no_ijazah}}</td>
                               <td><i class="bx bxs-edit bx-sm" style=" color:cornflowerblue";></i>
                               <i class="bx bxs-eraser bx-sm" style=" color: cornflowerblue";></td>
                             </tr>
@@ -74,29 +78,47 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                <h5 class="modal-title">Tambah Periode</h5>
+                <h5 class="modal-title">Tambah Responden</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                    <form id="periodeForm" action="{{ route('periode.store') }}" method="POST">
+                    <form id="respondenForm" action="{{ route('responden.store') }}" method="POST">
                         <!-- Modal body -->
                         <div class="modal-body">
 
                                 @csrf
+
                                 <div class="mb-3">
-                                    <label class="form-label" for="nama_periode">Nama Periode</label>
-                                    <input type="text" class="form-control @error('nama_periode') is-invalid @enderror" id="nama_periode" name="nama_periode" value="{{old('nama_periode')}}">
-                                    @error('nama_periode')
+                                    <label class="form-label" for="nim_responden">NIM</label>
+                                    <input type="text" class="form-control @error('nim_responden') is-invalid @enderror" id="nim_responden" name="nim_responden" value="{{old('nim_responden')}}">
+                                    @error('nim_responden')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="nama_periode">Nama Responden</label>
+                                    <input type="text" class="form-control @error('nama_responden') is-invalid @enderror" id="nama_responden" name="nama_responden" value="{{old('nama_responden')}}">
+                                    @error('nama_responden')
                                     <div class="invalid-feedback">{{$message}}</div>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="tahun_periode">Tahun</label>
-                                    <input type="text" class="form-control @error('tahun_periode') is-invalid @enderror" id="tahun_periode" name="tahun_periode" value="{{old('tahun_periode')}}">
-                                    @error('tahun_periode')
-                                        <div class="invalid-feedback">{{$message}}</div>
+                                    <label class="form-label" for="prodi">Prodi</label>
+                                    <input type="text" class="form-control @error('prodi') is-invalid @enderror" id="prodi" name="prodi" value="{{old('prodi')}}">
+                                    @error('prodi')
+                                    <div class="invalid-feedback">{{$message}}</div>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="no_ijazah">Nomor Ijazah</label>
+                                    <input type="text" class="form-control @error('no_ijazah') is-invalid @enderror" id="no_ijazah" name="no_ijazah" value="{{old('no_ijazah')}}">
+                                    @error('no_ijazah')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
+                                </div>
+
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">

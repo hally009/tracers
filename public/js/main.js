@@ -35,7 +35,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -200,14 +200,14 @@
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
   });
 
   /**
-   * Initiate portfolio details lightbox 
+   * Initiate portfolio details lightbox
    */
   const portfolioDetailsLightbox = GLightbox({
     selector: '.portfolio-details-lightbox',
@@ -263,8 +263,34 @@
   });
 
   /**
-   * Initiate Pure Counter 
+   * Initiate Pure Counter
    */
   new PureCounter();
 
 })()
+
+/*collapse*/
+
+const currentIndikator = document.querySelector(`#status_pengguna1`);
+const nextIndikator = document.querySelector(`#kata_pengguna1`);
+
+currentIndikator.addEventListener('change', () => {
+    if (currentIndikator.value !== "") {
+        nextIndikator.style.display = 'block';
+    } else {
+        nextIndikator.style.display = 'none';
+    }
+});
+
+const currentIndikator1 = document.querySelector('#kata_pengguna1');
+const nextIndikator1 = document.querySelector('#kata_sandi1');
+
+currentIndikator1.addEventListener('input', () => {
+    if (currentIndikator1.value !== "") {
+        nextIndikator1.style.display = 'block';
+    } else {
+        nextIndikator1.style.display = 'none';
+    }
+});
+
+

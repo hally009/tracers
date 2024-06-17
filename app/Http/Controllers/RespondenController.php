@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Aktor;
+use App\Models\responden;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 
 
-class AktorController extends Controller
+
+class RespondenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,8 @@ class AktorController extends Controller
      */
     public function index()
     {
-        $aktors = Aktor::all();
-        return view('admin.aktor',['aktors' => $aktors]);
+        $respondens = Responden::all();
+        return view('admin.responden',['respondens' => $respondens]);
     }
 
     /**
@@ -28,7 +29,7 @@ class AktorController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -38,30 +39,31 @@ class AktorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $validatorAktor = Validator::make($request->all(), [
-            'status_pengguna' => 'required|min:3|max:25',
-            'kata_pengguna' => 'required|numeric|digits:6',
-            'kata_sandi' => 'required|numeric|digits:6',
-        ]);
+{
+    $validator = Validator::make($request->all(), [
+        'nim_responden' => 'required|numeric|digits:10',
+        'nama_responden'  => 'required|min:3|max:50',
+        'prodi'  => 'required|min:3|max:50',
+        'no_ijazah'  => 'required|numeric|digits:20',
+    ]);
 
-        if ($validatorAktor->fails()) {
-            return redirect()->back()->withErrors($validatorAktor)->withInput();
-        }
-
-        Aktor::create($request->all());
-
-        return redirect()->route('aktor.index')->with('success', 'Data Akun berhasil ditambahkan');
-
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
     }
+
+    Responden::create($request->all());
+
+    return Redirect::route('responden.index')->withSuccess('Data responden berhasil ditambahkan');
+}
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\responden  $periode
      * @return \Illuminate\Http\Response
      */
-    public function show(Aktor $aktor)
+    public function show(responden $responden)
     {
         //
     }
@@ -69,10 +71,10 @@ class AktorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\responden  $periode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Aktor $aktor)
+    public function edit(responden $responden)
     {
         //
     }
@@ -81,10 +83,10 @@ class AktorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\responden  $periode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Aktor $aktor)
+    public function update(Request $request, responden $responden)
     {
         //
     }
@@ -92,10 +94,10 @@ class AktorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\responden  $periode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aktor $aktor)
+    public function destroy(responden $responden)
     {
         //
     }

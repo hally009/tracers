@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Aktor;
+use App\Models\kuis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 
 
-class AktorController extends Controller
+
+class KuisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,7 @@ class AktorController extends Controller
      */
     public function index()
     {
-        $aktors = Aktor::all();
-        return view('admin.aktor',['aktors' => $aktors]);
+        return view('admin.kuis');
     }
 
     /**
@@ -28,7 +28,7 @@ class AktorController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -38,30 +38,18 @@ class AktorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $validatorAktor = Validator::make($request->all(), [
-            'status_pengguna' => 'required|min:3|max:25',
-            'kata_pengguna' => 'required|numeric|digits:6',
-            'kata_sandi' => 'required|numeric|digits:6',
-        ]);
+{
 
-        if ($validatorAktor->fails()) {
-            return redirect()->back()->withErrors($validatorAktor)->withInput();
-        }
+}
 
-        Aktor::create($request->all());
-
-        return redirect()->route('aktor.index')->with('success', 'Data Akun berhasil ditambahkan');
-
-    }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\kuis  $periode
      * @return \Illuminate\Http\Response
      */
-    public function show(Aktor $aktor)
+    public function show(kuis $kuis)
     {
         //
     }
@@ -69,10 +57,10 @@ class AktorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\kuis  $periode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Aktor $aktor)
+    public function edit(kuis $kuis)
     {
         //
     }
@@ -81,10 +69,10 @@ class AktorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\kuis  $periode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Aktor $aktor)
+    public function update(Request $request, kuis $kuis)
     {
         //
     }
@@ -92,10 +80,10 @@ class AktorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Aktor  $aktor
+     * @param  \App\Models\kuis  $periode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aktor $aktor)
+    public function destroy(kuis $kuis)
     {
         //
     }

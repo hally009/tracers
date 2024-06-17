@@ -27,16 +27,19 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
-
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Style Slider Kuis -->
   <style>
-    .table.datatable thead th:empty {
+    .form-section {
       display: none;
     }
+
+    .current-section {
+      display: block;
+    }
   </style>
-
-
 </head>
 
 <body>
@@ -49,12 +52,12 @@
 
     <nav id="navbar" class="navbar nav-menu">
       <ul>
-        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Admin</span></a></li>
-        <li><a href="{{url('periode')}}" class="nav-link scrollto"><i class="bx bx-hourglass"></i> <span>Periode</span></a></li>
-        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Kuisioner</span></a></li>
-        <li><a href="#services" class="nav-link scrollto"><i class="bx bx-user-voice"></i> <span>Responden</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-user-pin"></i> <span>Pengelola</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-exit"></i> <span>Keluar</span></a></li>
+        <li><a href="{{route('periode.index')}}" class="nav-link scrollto"><i class="bx bx-hourglass"></i> <span>Periode</span></a></li>
+        <li><a href="{{route('aktor.index')}}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Akun</span></a></li>
+        <li><a href="{{route('kuis.index')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Kuisioner</span></a></li>
+        <li><a href="{{route('responden.index')}}" class="nav-link scrollto"><i class="bx bx-user-voice"></i> <span>Responden</span></a></li>
+        <li><a href="#" class="nav-link scrollto"><i class="bx bx-user-pin"></i> <span>Pengelola</span></a></li>
+        <li><a href="#" class="nav-link scrollto"><i class="bx bx-exit"></i> <span>Keluar</span></a></li>
       </ul>
     </nav><!-- .nav-menu -->
 

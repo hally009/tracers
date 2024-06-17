@@ -1206,3 +1206,9 @@ section {
 #footer .credits {
   font-size: 13px;
 }
+
+/*collapse*/
+
+#kata_pengguna1, #kata_sandi1 {
+    display: none;
+}

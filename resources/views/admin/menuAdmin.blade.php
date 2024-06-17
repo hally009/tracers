@@ -35,7 +35,7 @@
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
 
-        <a href="{{ route('login.index') }}"><button type="button" class="btn btn-outline-secondary">Keluar</button></a>
+        <a href=""><button type="button" class="btn btn-outline-secondary">Keluar</button></a>
         <br>
         <br>
         <div class="row">

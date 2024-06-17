@@ -64,8 +64,8 @@
                     <p class="text-center small">Masukkan Kata Pengguna dan Kata Sandi Anda</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
-
+                  <form class="row g-3 needs-validation" action="" method="POST" novalidate>
+                    @csrf
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Kata Pengguna</label>
                       <div class="input-group has-validation">
@@ -88,7 +88,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <a href="{{route('menuAdmin.menuAdmin')}}"><button class="btn btn-primary w-100" type="button">Login</button></a>
+                      <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0"> <a href="pages-register.html"> </a></p>

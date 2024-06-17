@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Aktor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Redirect;
 
-
-class AktorController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,17 @@ class AktorController extends Controller
      */
     public function index()
     {
-        $aktors = Aktor::all();
-        return view('admin.aktor',['aktors' => $aktors]);
+        return view('login');
+    }
+
+    public function menuAdmin()
+    {
+        return view('admin.menuAdmin');
+    }
+
+    public function konfigurasi()
+    {
+        return view('admin.konfigurasi');
     }
 
     /**
@@ -39,20 +45,7 @@ class AktorController extends Controller
      */
     public function store(Request $request)
     {
-        $validatorAktor = Validator::make($request->all(), [
-            'status_pengguna' => 'required|min:3|max:25',
-            'kata_pengguna' => 'required|numeric|digits:6',
-            'kata_sandi' => 'required|numeric|digits:6',
-        ]);
-
-        if ($validatorAktor->fails()) {
-            return redirect()->back()->withErrors($validatorAktor)->withInput();
-        }
-
-        Aktor::create($request->all());
-
-        return redirect()->route('aktor.index')->with('success', 'Data Akun berhasil ditambahkan');
-
+        //
     }
 
     /**
