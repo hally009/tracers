@@ -87,15 +87,30 @@
 
                                 @csrf
 
-                                <div class="mb-3">
+                                <div class="mb-3" id="akun1">
+                                    <label class="form-label" for="akun">AKUN</label>
+                                    <select class="form-control @error('akun') is-invalid @enderror" id="akun" name="akun">
+                                        <option value="">Pilih Akun</option>
+                                        @foreach($aktors as $aktor)
+                                            <option value="{{ $aktor->kata_pengguna }}" {{ old('kata_pengguna') == $aktor->kata_pengguna ? 'selected' : '' }}>
+                                                {{ $aktor->akun }} (NIM: {{ $aktor->kata_pengguna }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_user')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3" id="nim_responden1" style="display: none">
                                     <label class="form-label" for="nim_responden">NIM</label>
-                                    <input type="text" class="form-control @error('nim_responden') is-invalid @enderror" id="nim_responden" name="nim_responden" value="{{old('nim_responden')}}">
+                                    <input type="text" class="form-control @error('nim_responden') is-invalid @enderror" id="nim_responden" name="nim_responden" value="{{old('nim_responden')}}" readonly>
                                     @error('nim_responden')
                                         <div class="invalid-feedback">{{$message}}</div>
                                     @enderror
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3" id="nama_responden1" style="display:none">
                                     <label class="form-label" for="nama_periode">Nama Responden</label>
                                     <input type="text" class="form-control @error('nama_responden') is-invalid @enderror" id="nama_responden" name="nama_responden" value="{{old('nama_responden')}}">
                                     @error('nama_responden')
@@ -103,7 +118,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3" id="prodi1" style="display:none">
                                     <label class="form-label" for="prodi">Prodi</label>
                                     <input type="text" class="form-control @error('prodi') is-invalid @enderror" id="prodi" name="prodi" value="{{old('prodi')}}">
                                     @error('prodi')
@@ -111,7 +126,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3" id="ijazah1" style="display:none">
                                     <label class="form-label" for="no_ijazah">Nomor Ijazah</label>
                                     <input type="text" class="form-control @error('no_ijazah') is-invalid @enderror" id="no_ijazah" name="no_ijazah" value="{{old('no_ijazah')}}">
                                     @error('no_ijazah')
@@ -145,4 +160,46 @@
         });
     </script>
 
+    <script>
+        /*collapse form responden*/
+
+        const indikatorAkun = document.getElementById('akun');
+        const indikatorNim = document.querySelector(`#nim_responden1`);
+        const indikatorNama = document.querySelector(`#nama_responden1`);
+        const indikatorProdi = document.querySelector(`#prodi1`);
+        const indikatorIjazah = document.querySelector(`#ijazah1`);
+
+        indikatorAkun.addEventListener('change', () => {
+            if (indikatorAkun.value !== "") {
+                indikatorNim.style.display = 'block';
+                indikatorNama.style.display = 'block';
+            } else {
+                indikatorNim.style.display = 'none';
+                indikatorNama.style.display = 'none';
+            }
+        });
+
+        indikatorNama.addEventListener('input', () => {
+            if (indikatorNama.value !== "") {
+                indikatorProdi.style.display = 'block';
+            } else {
+                indikatorProdi.style.display = 'none';
+            }
+        });
+
+        indikatorProdi.addEventListener('input', () => {
+            if (indikatorProdi.value !== "") {
+                indikatorIjazah.style.display = 'block';
+            } else {
+                indikatorIjazah.style.display = 'none';
+            }
+        });
+
+// Event listener untuk mengubah nilai nim_responden berdasarkan kata_pengguna yang dipilih
+        document.getElementById('akun').addEventListener('change', function() {
+            var selectedAkun = this.value;
+            document.getElementById('nim_responden').value = selectedAkun;
+        });
+
+    </script>
 @endsection

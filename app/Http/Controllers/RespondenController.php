@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\responden;
+use App\Models\Aktor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -19,7 +20,8 @@ class RespondenController extends Controller
     public function index()
     {
         $respondens = Responden::all();
-        return view('admin.responden',['respondens' => $respondens]);
+        $aktors = Aktor::where('status_pengguna', 'Responden')->get();
+        return view('admin.responden', ['respondens' => $respondens, 'aktors' => $aktors]);
     }
 
     /**
@@ -39,22 +41,31 @@ class RespondenController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'nim_responden' => 'required|numeric|digits:10',
+    {
+        $validator = Validator::make($request->all(), [
+        'nim_responden' => 'required|numeric|digits:6',
         'nama_responden'  => 'required|min:3|max:50',
         'prodi'  => 'required|min:3|max:50',
-        'no_ijazah'  => 'required|numeric|digits:20',
+        'no_ijazah'  => 'required|numeric|digits:10',
     ]);
 
-    if ($validator->fails()) {
+        if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();
-    }
+        }
 
-    Responden::create($request->all());
+        // Buat objek Responden berdasarkan input yang valid
+        $respondenData = [
+        'nim_responden' => $request->nim_responden,
+        'nama_responden' => $request->nama_responden,
+        'prodi' => $request->prodi,
+        'no_ijazah' => $request->no_ijazah,
+        ];
 
-    return Redirect::route('responden.index')->withSuccess('Data responden berhasil ditambahkan');
-}
+        // Simpan objek Responden ke dalam database
+        Responden::create($respondenData);
+
+        return Redirect::route('responden.index')->withSuccess('Data responden berhasil ditambahkan');
+        }
 
 
     /**
